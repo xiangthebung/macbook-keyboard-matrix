@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "synchronizedOn": "2026-10-10",
+  "nativeSource": {
+    "repository": "https://github.com/xiangthebung/key-chord",
+    "baseCommit": "d9f2d93170a33d466f48573af59a926b769e25f5",
+    "includesLocalChanges": true,
+    "sha256": "3ad463bbbba2d44ee56bf8618780173936b603d429c53f8b1cd4c219f9761305",
+    "fileCount": 60
+  },
+  "courseLessons": 52,
+  "vocabularies": [
+    {
+      "id": "english",
+      "wordCount": 200
+    },
+    {
+      "id": "english5k",
+      "wordCount": 5000
+    },
+    {
+      "id": "english25k",
+      "wordCount": 24141
+    }
+  ],
+  "dataSHA256": "e488ceb66bfddfd063b9e2d7b9ea990409134116f5821a75ad09a5104a867012",
+  "macDownload": {
+    "path": "downloads/KeyChord.zip",
+    "architecture": "arm64",
+    "minimumMacOS": "14.0",
+    "signature": "ad-hoc",
+    "sha256": "29e098c82f5fcac4615af922e975bd3543e0c3c873a1ace13adf81fffbc8722a"
+  }
+}

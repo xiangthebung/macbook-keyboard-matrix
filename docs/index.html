@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KeyChord · Keyboard Matrix</title>
+<meta name="description" content="Learn chord typing with KeyChord, practice English and C++, and explore measured and predicted MacBook keyboard matrices.">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 15px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; color: var(--fg); background: var(--bg); }
+  main { max-width: var(--site-width); margin: 0 auto; padding: 20px var(--page-padding) 28px; }
+  header { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 24px; margin: 0 0 6px; }
+  h1 { font-size: var(--font-title); margin: 0; }
+  h2 { font-size: var(--font-card-title); margin: 0; }
+  .switch { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .switch button { font: inherit; font-size: 14px; color: var(--fg); background: var(--bg); border: 0;
+                   padding: 5px 12px; cursor: pointer; }
+  .switch button + button { border-left: 1px solid var(--line); }
+  .switch button[aria-pressed="true"] { background: var(--on); color: #fff; font-weight: 600; }
+  .switch button:focus-visible { outline: 2px solid var(--on-edge); outline-offset: -3px; }
+  .basis { color: var(--muted); font-size: 13px; margin: 0 0 14px; max-width: 70em; min-height: 1.45em; }
+  .basis a { color: inherit; }
+  .test-toggle, .probe button { font: inherit; color: var(--fg); background: var(--key); border: 1px solid var(--line);
+                               border-radius: 6px; padding: 7px 12px; cursor: pointer; }
+  .test-toggle { margin: 0 0 14px; }
+  .probe { border: 1px solid var(--line); border-radius: 10px; padding: 16px 20px; margin-bottom: 18px; max-width: 850px; }
+  .probe h2 { font-size: 18px; }
+  .probe p { margin: 8px 0; }
+  .probe .instruction { font-size: 24px; font-weight: 600; }
+  .probe .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .probe button:disabled { opacity: .45; cursor: default; }
+  .probe label { display: block; margin: 10px 0; }
+  .probe input[type="text"], .probe textarea { box-sizing: border-box; font: inherit; color: var(--fg); background: var(--bg);
+                                             border: 1px solid var(--line); border-radius: 5px; padding: 7px; width: 100%; }
+  .probe textarea { height: 210px; margin-top: 12px; font: 12px/1.5 ui-monospace, monospace; }
+  .probe .progress { color: var(--muted); font-size: 13px; }
+  [hidden] { display: none !important; }
+  .key.target rect { stroke: var(--fg); stroke-width: 3; }
+  .key.target rect, .key.hold rect { stroke-dasharray: 5 3; }
+  .key.unplaced.on rect { fill: var(--on); stroke: var(--on-edge); stroke-dasharray: none; }
+  .klabel.unplaced.on text { fill: #fff; }
+  .key.hold rect { stroke: var(--on); stroke-width: 3; }
+  .layout { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 16px 32px; align-items: start; }
+  @media (max-width: 1150px) { .layout { grid-template-columns: minmax(0, 1fr); } #grid { max-width: 760px; } }
+  svg { display: block; width: 100%; height: auto; user-select: none; -webkit-user-select: none; }
+  .status { font-size: 19px; font-weight: 600; margin: 14px 0 4px; }
+  .why { margin: 4px 0; min-height: 1.45em; max-width: 62em; }
+  .note, .caption, footer { color: var(--muted); font-size: 13px; }
+  .caption { margin: 2px 0 6px; }
+  footer { margin-top: 26px; }
+  footer a { color: inherit; }
+
+  /* Keyboard: key shapes, then labels on top */
+  .key rect, .key polygon { fill: var(--key); stroke: var(--line); stroke-width: 1; }
+  .key.unmapped rect, .key.unmapped polygon { fill: var(--unmapped); }
+  .klabel text { fill: var(--fg); font-size: 17px; font-weight: 600; }
+  .klabel.unmapped text { fill: var(--unmapped-text); font-size: 10px; font-weight: 400; }
+  .key.on rect { fill: var(--on); stroke: var(--on-edge); stroke-width: 2; }
+  .key.blocked rect { fill: var(--bad-soft); stroke: var(--bad); stroke-width: 2; }
+  .key.pointed rect { fill: var(--bad-fill); stroke: var(--bad-edge); }
+  .key.ghost rect { fill: var(--key); stroke: var(--bad); stroke-width: 2.5; stroke-dasharray: 6 3; }
+  .klabel.on text { fill: #fff; }
+  .klabel.blocked text, .klabel.ghost text { fill: var(--bad-text); }
+  .klabel.pointed text { fill: #fff; }
+  .klabel text.tag { font-size: 10px; font-weight: 700; fill: var(--bad-text); }
+  .key.blocked { cursor: help; }
+  /* On the keyboard, but where it sits in the matrix is not known */
+  .key.unplaced rect { fill: var(--unmapped); stroke: var(--unmapped-text); stroke-dasharray: 5 3; }
+  .key.unplaced { cursor: help; }
+  .key.unplaced.pointed rect { fill: var(--unmapped); stroke: var(--fg); }
+  .key.unplaced.target rect { stroke: var(--fg); stroke-width: 3; }
+  .key.unplaced.hold rect { stroke: var(--on); stroke-width: 3; }
+  .klabel.unplaced text { fill: var(--unmapped-text); }
+  .klabel.unplaced text.utag { font-size: 10px; font-weight: 400; }
+
+  /* Wiring grid */
+  .axis { fill: var(--muted); font-size: 12px; }
+  .wire { stroke: var(--wire); stroke-width: 2; }
+  .wire.lit { stroke: var(--on); stroke-width: 5; }
+  .ghost-rect { fill: rgba(207, 34, 46, .12); stroke: var(--bad); stroke-width: 3; stroke-dasharray: 8 5; }
+  .sw rect { fill: var(--key); stroke: var(--line); stroke-width: 1.2; }
+  .sw text { fill: var(--fg); font-size: 14px; font-weight: 600; }
+  .sw text.long { font-size: 11px; }
+  .sw.unid rect { fill: var(--unmapped); stroke-dasharray: 3 2; }
+  .sw.unid text { fill: var(--unmapped-text); font-weight: 400; }
+  .sw.on rect { fill: var(--on); stroke: var(--on-edge); stroke-width: 2; }
+  .sw.blocked rect { fill: var(--bad-soft); stroke: var(--bad); stroke-width: 2; }
+  .sw.pointed rect { fill: var(--bad-fill); stroke: var(--bad-edge); }
+  .sw.ghost rect { stroke: var(--bad); stroke-width: 2.5; stroke-dasharray: 5 3; }
+  .sw.on text { fill: #fff; }
+  .sw.blocked text, .sw.ghost text { fill: var(--bad-text); }
+  .sw.pointed text { fill: #fff; }
+  .sw.blocked { cursor: help; }
+  .wtag { font-size: 10px; font-weight: 700; fill: var(--bad-text); paint-order: stroke; stroke: var(--bg);
+          stroke-width: 3px; stroke-linejoin: round; }
+</style>
+<link rel="stylesheet" href="site.css?v=f3ab99c6cf25">
+<script src="site.js?v=f3ab99c6cf25"></script>
+</head>
+<body>
+<main>
+  <nav class="site-nav" aria-label="KeyChord">
+    <a class="brand" href="keychord/#learn">KeyChord</a>
+    <div class="links primary-navigation"><a href="keychord/#learn">Lessons</a><a href="keychord/#practice">Practice</a></div>
+    <details class="nav-more"><summary aria-current="page">Tools</summary><div class="nav-more-links"><a href="keychord/#listen">Listen</a><a href="keychord/#editor">Editor</a><a href="keychord/#hardware">Keyboard tools</a><a href="keychord/#reference">Reference</a><a href="./" aria-current="page">Keyboard matrix</a><a href="keychord/#settings">Settings</a><a href="keychord/downloads/KeyChord.zip">Download Mac app</a></div></details>
+  </nav>
+  <header>
+    <h1>MacBook Pro M1 Pro keyboard matrix</h1>
+    <div class="switch" role="group" aria-label="Keyboard layout">
+      <button type="button" data-layout="iso" aria-pressed="true">Canadian French (ISO)</button>
+      <button type="button" data-layout="ansi" aria-pressed="false">US (ANSI)</button>
+    </div>
+  </header>
+  <p id="basis" class="basis"></p>
+  <button id="test-toggle" class="test-toggle" type="button" hidden>Test the two unknown keys</button>
+  <section id="probe" class="probe" aria-label="US unknown-key test" hidden>
+    <h2>Test the US ` and \ keys</h2>
+    <div id="probe-setup">
+      <p>First tap each key alone, then hold the pairs shown and tap the outlined key. About 3–5 minutes;
+         progress is saved in this browser.</p>
+      <p class="note">Turn chord typing off in KeyChord before starting.</p>
+      <label>Mac model and year (optional)
+        <input id="probe-device" type="text" placeholder="e.g. 16-inch MacBook Pro, 2021" maxlength="120">
+      </label>
+      <label><input id="probe-confirm" type="checkbox"> I'm testing a built-in US (ANSI) MacBook keyboard.</label>
+      <button id="probe-start" type="button" disabled>Start test</button>
+    </div>
+    <div id="probe-run" hidden>
+      <p id="probe-progress" class="progress"></p>
+      <p id="probe-instruction" class="instruction" role="status" aria-live="polite"></p>
+      <p id="probe-detail"></p>
+      <div class="actions">
+        <button id="probe-blocked" type="button" disabled>I tapped it twice; no response</button>
+        <button id="probe-back" type="button">Redo previous</button>
+        <button id="probe-skip" type="button">Skip this tap</button>
+        <button id="probe-copy" type="button">Copy report</button>
+        <button id="probe-pause" type="button">Pause</button>
+        <button id="probe-reset" type="button">Start over</button>
+      </div>
+      <p id="probe-message" class="progress" role="status"></p>
+      <textarea id="probe-report" aria-label="Test report to paste into the chat" readonly hidden></textarea>
+    </div>
+  </section>
+  <div class="layout">
+    <section>
+      <svg id="kb" aria-hidden="true"></svg>
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+      <p id="why" class="why"></p>
+      <p class="note">At most 6 keys register at once (6-key rollover).</p>
+    </section>
+    <section>
+      <h2>Inside the keyboard</h2>
+      <p class="caption">Each key connects one row wire to one column wire. ? is a key that isn't mapped here.</p>
+      <svg id="grid" aria-hidden="true"></svg>
+    </section>
+  </div>
+  <footer><a href="https://github.com/xiangthebung/macbook-keyboard-matrix">Data, tools and method</a></footer>
+</main>
+<script src="kb-data.js?v=f3ab99c6cf25"></script>
+<script src="kbmatrix.js?v=f3ab99c6cf25"></script>
+<script src="us-key-test.js?v=f3ab99c6cf25"></script>
+<script>
+(function () {
+  "use strict";
+  var NS = "http://www.w3.org/2000/svg";
+  var README = "https://github.com/xiangthebung/macbook-keyboard-matrix#us-ansi-keyboards";
+  var BASIS = {
+    iso: "Measured by hand on one MacBook Pro with a Canadian French keyboard. The key positions are those of " +
+         "every Apple ISO layout.",
+    ansi: "Not measured: the ISO wiring, for the 46 keys in the same place on both keyboards. ` and \\ sit " +
+          "elsewhere on US keyboards (dashed). <a href=\"" + README + "\">How sure is this?</a>"
+  };
+  var kbSvg = document.getElementById("kb"), grid = document.getElementById("grid");
+  var buttons = Array.prototype.slice.call(document.querySelectorAll(".switch button"));
+  var current = null, kb = null, held = [], pointed = null;
+  var keyEls, rowWire, colWire, switches, gRect;
+  var probe = null, probeActive = false, probeDevice = "";
+  var probePanel = document.getElementById("probe"), testToggle = document.getElementById("test-toggle");
+  var probeCodes = {}, probeStorage = "kbUSUnknownKeyTest";
+  KB.ansi.data.keys.concat(KB.ansi.data.unplaced).forEach(function (k) { probeCodes[k.web_code] = k.id; });
+  try {
+    var savedProbe = JSON.parse(localStorage.getItem(probeStorage));
+    probe = new USKeyTest.Session(savedProbe);
+    if (savedProbe && savedProbe.version === USKeyTest.version) probeDevice = savedProbe.device || "";
+  } catch (e) { /* a new test works even when storage is unavailable */ }
+  if (!probe) probe = new USKeyTest.Session();
+  document.getElementById("probe-device").value = probeDevice;
+
+  function saveProbe() {
+    var saved = probe.snapshot(); saved.device = probeDevice;
+    try { localStorage.setItem(probeStorage, JSON.stringify(saved)); } catch (e) {
+      document.getElementById("probe-message").textContent = "Progress couldn't be saved. Copy the report before closing this page.";
+    }
+  }
+  function openProbe(open) {
+    probePanel.hidden = !open;
+    testToggle.textContent = open ? "Close test" : "Test the two unknown keys";
+    if (!open) { probeActive = false; probe.interrupt(); held = []; }
+    renderProbe(); render();
+  }
+  function renderProbe() {
+    var completed = probe.results.filter(function (r) { return r !== null; }).length, s = probe.step();
+    document.getElementById("probe-start").textContent = completed ? (s ? "Resume test" : "Show report") : "Start test";
+    document.getElementById("probe-setup").hidden = probeActive;
+    document.getElementById("probe-run").hidden = !probeActive;
+    document.getElementById("probe-progress").textContent = completed + " of " + probe.steps.length + " taps recorded";
+    document.getElementById("probe-back").disabled = probe.index === 0;
+    document.getElementById("probe-skip").disabled = !s || !s.pair.length;
+    document.getElementById("probe-blocked").disabled = !s || !s.pair.length || !probe.validHold();
+    var instruction = document.getElementById("probe-instruction"), detail = document.getElementById("probe-detail");
+    if (!s) {
+      instruction.textContent = "Finished. Copy the report and paste it into the chat.";
+      detail.textContent = probe.results.indexOf("skipped") >= 0 ? "Skipped taps stay untested in the report." : "All test taps recorded.";
+    } else if (!s.pair.length) {
+      instruction.textContent = "Tap " + name(s.tap) + " by itself.";
+      detail.textContent = "Press and release it with no other keys held. This checks that the browser receives the key.";
+    } else {
+      var pair = s.pair.map(name).join(" + ");
+      instruction.textContent = "Hold " + pair + "; tap " + name(s.tap) + ".";
+      detail.textContent = (s.stretch ? "This pair is farther apart; use fingers from both hands if needed. "
+        : "Hold both keys with one hand, and tap with the other. ")
+        + (probe.validHold() ? "Both held keys detected. A successful tap is recorded when you release it; if nothing happens, try twice, then click ‘no response’."
+        : "Release extra keys and keep the two shown held while you press and release the target.");
+    }
+    var report = document.getElementById("probe-report");
+    if (!report.hidden) report.value = probe.report(probeDevice, USKeyTest.reportKeys(KB.ansi));
+  }
+  function changedProbe() { saveProbe(); renderProbe(); render(); }
+  testToggle.addEventListener("click", function () {
+    var open = probePanel.hidden;
+    history.replaceState(null, "", open ? "#us-test" : "#us");
+    openProbe(open);
+  });
+  document.getElementById("probe-confirm").addEventListener("change", function (e) {
+    document.getElementById("probe-start").disabled = !e.target.checked;
+  });
+  document.getElementById("probe-start").addEventListener("click", function () {
+    probeDevice = document.getElementById("probe-device").value.trim();
+    probeActive = true; probe.interrupt(); held = [];
+    document.getElementById("probe-report").hidden = true;
+    document.getElementById("probe-message").textContent = "";
+    changedProbe();
+  });
+  document.getElementById("probe-blocked").addEventListener("click", function () {
+    if (probe.record("blocked")) changedProbe();
+  });
+  document.getElementById("probe-skip").addEventListener("click", function () {
+    if (probe.record("skipped")) changedProbe();
+  });
+  document.getElementById("probe-back").addEventListener("click", function () { if (probe.back()) changedProbe(); });
+  document.getElementById("probe-pause").addEventListener("click", function () {
+    probeActive = false; probe.interrupt(); held = []; changedProbe();
+  });
+  document.getElementById("probe-reset").addEventListener("click", function () {
+    if (!window.confirm("Discard the recorded taps and start over?")) return;
+    probe = new USKeyTest.Session(); held = [];
+    document.getElementById("probe-report").hidden = true;
+    changedProbe();
+  });
+  document.getElementById("probe-copy").addEventListener("click", function () {
+    var report = document.getElementById("probe-report"), message = document.getElementById("probe-message");
+    report.hidden = false;
+    report.value = probe.report(probeDevice, USKeyTest.reportKeys(KB.ansi));
+    probe.interrupt(); held = []; renderProbe(); render();
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(report.value).then(function () { message.textContent = "Report copied. Paste it into the chat."; }, fallback);
+    } else fallback();
+    function fallback() { report.focus(); report.select(); message.textContent = "Select and copy the report below, then paste it into the chat."; }
+  });
+
+  function el(tag, attrs, parent, text) {
+    var e = document.createElementNS(NS, tag);
+    for (var a in attrs) e.setAttribute(a, attrs[a]);
+    if (text != null) e.textContent = text;
+    parent.appendChild(e);
+    return e;
+  }
+  function has(list, x) { return list.indexOf(x) >= 0; }
+  function name(k) { return kb.label(k); }
+  function Name(k) { var n = name(k); return n.charAt(0).toUpperCase() + n.slice(1); }   // at the start of a sentence
+  function spotId(spot) { return spot[0] + "|" + spot[1]; }
+  function and(keys) {
+    var n = keys.map(name);
+    return n.length < 2 ? n.join("") : n.slice(0, -1).join(", ") + " and " + n[n.length - 1];
+  }
+  function pointable(node, k) {
+    node.addEventListener("mouseenter", function () { pointed = k; render(); });
+    node.addEventListener("mouseleave", function () { if (pointed === k) { pointed = null; render(); } });
+  }
+
+  // Keyboard
+  var U = 60, PAD = 6;
+  function drawKeyboard(layout) {
+    kbSvg.textContent = "";
+    kbSvg.setAttribute("viewBox", "0 0 " + (layout.size[0] * U + 2 * PAD) + " " + (layout.size[1] * U + 2 * PAD));
+    var kShapes = el("g", {}, kbSvg), kLabels = el("g", { "pointer-events": "none" }, kbSvg);
+    keyEls = {};
+    layout.geometry.forEach(function (g) {
+      var x = PAD + g.x * U + 2, y = PAD + g.y * U + 2, w = g.w * U - 4, h = g.h * U - 4;
+      var placed = g.id && kb.keys[g.id], unplaced = g.id && kb.unplaced[g.id];
+      var cls = placed ? "mapped" : unplaced ? "unplaced" : "unmapped";
+      var shape = el("g", { "class": "key " + cls }, kShapes);
+      el("rect", { x: x, y: y, width: w, height: h, rx: 6 }, shape);
+      var label = el("g", { "class": "klabel " + cls }, kLabels);
+      el("text", { x: x + w / 2, y: y + h / 2 + (placed || unplaced ? -3 : 0), "text-anchor": "middle",
+                   "dominant-baseline": "middle" }, label, g.label);
+      if (unplaced) {
+        el("text", { "class": "utag", x: x + w / 2, y: y + h - 7, "text-anchor": "middle" }, label, "unknown");
+        keyEls[g.id] = { shape: shape, label: label };
+        pointable(shape, g.id);
+      }
+      if (!placed) return;
+      var tag = el("text", { "class": "tag", x: x + w / 2, y: y + h - 7, "text-anchor": "middle" }, label);
+      keyEls[g.id] = { shape: shape, label: label, tag: tag };
+      pointable(shape, g.id);
+    });
+    if (layout.returnPath) {   // the L-shaped ISO Return key
+      el("polygon", { points: layout.returnPath.map(function (p) { return (PAD + p[0] * U) + "," + (PAD + p[1] * U); }).join(" ") },
+         el("g", { "class": "key unmapped" }, kShapes));
+      el("text", { x: PAD + 14 * U, y: PAD + 2.2 * U, "text-anchor": "middle", "dominant-baseline": "middle" },
+         el("g", { "class": "klabel unmapped" }, kLabels), "return");
+    }
+  }
+
+  // Wiring grid
+  var CELL = 54, LEFT = 84, TOP = 38;
+  function xy(spot) {
+    return [LEFT + kb.columns.indexOf(spot[1]) * CELL + CELL / 2, TOP + kb.rows.indexOf(spot[0]) * CELL + CELL / 2];
+  }
+  function drawGrid() {
+    grid.textContent = "";
+    var nR = kb.rows.length, nC = kb.columns.length;
+    grid.setAttribute("viewBox", "0 0 " + (LEFT + nC * CELL + 12) + " " + (TOP + nR * CELL + 10));
+    var gWires = el("g", {}, grid);
+    gRect = el("g", {}, grid);
+    var gSwitches = el("g", {}, grid), gTags = el("g", {}, grid);
+    rowWire = {}; colWire = {}; switches = {};
+    kb.rows.forEach(function (r) {
+      var y = xy([r, kb.columns[0]])[1];
+      rowWire[r] = el("line", { "class": "wire", x1: LEFT + 4, y1: y, x2: LEFT + nC * CELL - 4, y2: y }, gWires);
+      el("text", { "class": "axis", x: LEFT - 8, y: y + 4, "text-anchor": "end" }, grid, r);
+    });
+    kb.columns.forEach(function (c) {
+      var x = xy([kb.rows[0], c])[0];
+      colWire[c] = el("line", { "class": "wire", x1: x, y1: TOP + 4, x2: x, y2: TOP + nR * CELL - 4 }, gWires);
+      el("text", { "class": "axis", x: x, y: TOP - 10, "text-anchor": "middle" }, grid, c);
+    });
+    kb.rows.forEach(function (r) {
+      kb.columns.forEach(function (c) {
+        var id = r + "|" + c, k = kb.at[id] || null;
+        if (!k && !kb.unidentified[id]) return;
+        var p = xy([r, c]), label = k ? name(k) : "?";
+        var g = el("g", { "class": "sw " + (k ? "mapped" : "unid") }, gSwitches);
+        el("rect", { x: p[0] - 17, y: p[1] - 13, width: 34, height: 26, rx: 6 }, g);
+        el("text", { x: p[0], y: p[1] + 1, "text-anchor": "middle", "dominant-baseline": "middle",
+                     "class": label.length > 1 ? "long" : "" }, g, label);
+        if (kb.spotNote[id]) el("title", {}, g, kb.spotNote[id]);
+        if (k) pointable(g, k);
+        switches[id] = { g: g, key: k, tag: el("text", { "class": "wtag", x: p[0], y: p[1] + 25, "text-anchor": "middle" }, gTags) };
+      });
+    });
+  }
+
+  function render() {
+    var blocked = kb.wouldDrop(held);   // keys that won't register while these are held
+    // Pointing at a red key: why it won't register.
+    var why = null;
+    if (pointed && has(blocked, pointed))
+      why = held.length >= kb.rollover ? { limit: true } :
+        kb.blockedTriples(held.concat([pointed])).filter(function (t) { return has(t.keys, pointed); })[0];
+    var ghost = why && why.spot ? spotId(why.spot) : null;
+    function state(k) {
+      if (has(held, k)) return "on";
+      if (ghost === spotId(kb.pos[k])) return "ghost";
+      if (!has(blocked, k)) return "";
+      return k === pointed ? "blocked pointed" : "blocked";
+    }
+
+    kb.order.forEach(function (k) {
+      var e = keyEls[k], st = state(k);
+      e.shape.setAttribute("class", "key mapped " + st);
+      e.label.setAttribute("class", "klabel mapped " + st);
+      e.tag.textContent = st === "ghost" ? "ghost" : "";
+    });
+    Object.keys(kb.unplaced).forEach(function (k) {
+      if (keyEls[k]) keyEls[k].shape.setAttribute("class", "key unplaced" + (k === pointed ? " pointed" : ""));
+    });
+    var litRows = {}, litCols = {};
+    held.forEach(function (k) { litRows[kb.pos[k][0]] = true; litCols[kb.pos[k][1]] = true; });
+    kb.rows.forEach(function (r) { rowWire[r].setAttribute("class", litRows[r] ? "wire lit" : "wire"); });
+    kb.columns.forEach(function (c) { colWire[c].setAttribute("class", litCols[c] ? "wire lit" : "wire"); });
+    Object.keys(switches).forEach(function (id) {
+      var sw = switches[id], st = sw.key ? state(sw.key) : id === ghost ? "ghost" : "";
+      sw.g.setAttribute("class", "sw " + (sw.key ? "mapped " : "unid ") + st);
+      sw.tag.textContent = st === "ghost" ? "ghost" : "";
+    });
+    gRect.textContent = "";
+    if (ghost) {
+      var pts = [why.spot].concat(why.keys.map(function (k) { return kb.pos[k]; })).map(xy);
+      var xs = pts.map(function (p) { return p[0]; }), ys = pts.map(function (p) { return p[1]; });
+      var x0 = Math.min.apply(null, xs), y0 = Math.min.apply(null, ys);
+      el("rect", { "class": "ghost-rect", x: x0, y: y0, width: Math.max.apply(null, xs) - x0,
+                   height: Math.max.apply(null, ys) - y0 }, gRect);
+    }
+
+    var status = document.getElementById("status"), text = document.getElementById("why");
+    if (!held.length) status.textContent = "Hold some keys.";
+    else status.textContent = "Holding " + held.map(name).join(" + ") + ". " + (
+      held.length >= kb.rollover ? "That's the limit: no other key will register." :
+      blocked.length ? "The " + blocked.length + " red keys won't register now." : "Any other key will register.");
+    if (pointed && kb.unplaced[pointed])
+      text.textContent = Name(pointed) + " isn't tracked here: " + kb.unplaced[pointed].note + ".";
+    else if (why && why.limit)
+      text.textContent = Name(pointed) + " won't register: the keyboard registers at most " + kb.rollover + " keys at once.";
+    else if (why) {
+      var at = kb.at[ghost];
+      text.textContent = Name(pointed) + " won't register. " + and(why.keys) + " would be three corners of a rectangle " +
+        "on the grid, so the fourth corner, " + (at ? name(at) : kb.spotNote[ghost] ? "a ? spot (" + kb.spotNote[ghost] + ")" :
+        "a key that isn't mapped (?)") + ", would look pressed too (a ghost). The keyboard can't tell which keys are " +
+        "real, so it ignores " + name(pointed) + ".";
+    } else text.textContent = blocked.length && held.length < kb.rollover ? "Point at a red key to see why." : "";
+    if (probeActive && !probePanel.hidden) {
+      var step = probe.step();
+      Object.keys(keyEls).forEach(function (k) {
+        var e = keyEls[k], mapped = !!kb.keys[k], cls = mapped ? "mapped" : "unplaced";
+        var st = probe.down.has(k) ? " on" : "";
+        if (step && k === step.tap) st += " target";
+        if (step && step.pair.indexOf(k) >= 0) st += " hold";
+        e.shape.setAttribute("class", "key " + cls + st);
+        e.label.setAttribute("class", "klabel " + cls + (probe.down.has(k) ? " on" : ""));
+        if (e.tag) e.tag.textContent = "";
+      });
+      status.textContent = step ? "Only actual key events count in this test." : "Test finished.";
+      text.textContent = "";
+    }
+  }
+
+  // Layout: from the address (#iso, #ansi or #us), else the last one chosen, else the measured ISO keyboard.
+  function wanted() {
+    var h = location.hash.replace("#", "").toLowerCase();
+    if (h === "us-test") h = "ansi";
+    if (h === "us") h = "ansi";
+    if (h === "iso" || h === "ansi") return h;
+    try { h = localStorage.getItem("kbLayout"); } catch (e) { h = null; }
+    return h === "iso" || h === "ansi" ? h : "iso";
+  }
+  function show(id) {
+    if (id === current) return;
+    current = id;
+    kb = new KBMatrix.Matrix(KB[id].data);
+    probeActive = false; probe.interrupt(); probePanel.hidden = true;
+    testToggle.hidden = id !== "ansi";
+    testToggle.textContent = "Test the two unknown keys";
+    held = []; pointed = null;
+    drawKeyboard(KB[id]);
+    drawGrid();
+    buttons.forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-layout") === id)); });
+    document.getElementById("basis").innerHTML = BASIS[id] || "";
+    render();
+  }
+  buttons.forEach(function (b) {
+    b.addEventListener("click", function () {
+      var id = b.getAttribute("data-layout");
+      try { localStorage.setItem("kbLayout", id); } catch (e) { /* storage unavailable */ }
+      history.replaceState(null, "", id === "ansi" ? "#us" : "#iso");
+      show(id);
+    });
+  });
+  window.addEventListener("hashchange", function () { show(wanted()); openProbe(location.hash === "#us-test"); });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
+    if (probeActive) {
+      if (e.metaKey || e.ctrlKey || e.altKey || e.shiftKey) {
+        probe.interrupt(); held = []; renderProbe(); render(); return;
+      }
+      var testKey = probeCodes[e.code];
+      if (!testKey) { probe.interrupt(); held = []; renderProbe(); render(); return; }
+      e.preventDefault();
+      probe.keyDown(testKey, e.repeat);
+      held = Array.from(probe.down).filter(function (k) { return !!kb.keys[k]; });
+      renderProbe(); render(); return;
+    }
+    // macOS sends no key-ups for keys released while Command is down, so start over.
+    if (e.key === "Meta" || e.metaKey) { if (held.length) { held = []; render(); } return; }
+    if (e.ctrlKey || e.altKey) return;   // leave shortcuts alone
+    var k = kb.byWebCode[e.code];
+    if (!k) return;
+    e.preventDefault();
+    if (!has(held, k)) { held.push(k); render(); }
+  });
+  document.addEventListener("keyup", function (e) {
+    if (probeActive) {
+      var testKey = probeCodes[e.code];
+      if (!testKey) return;
+      e.preventDefault();
+      var changed = probe.keyUp(testKey);
+      held = Array.from(probe.down).filter(function (k) { return !!kb.keys[k]; });
+      if (changed) saveProbe();
+      renderProbe(); render(); return;
+    }
+    if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
+    var k = kb.byWebCode[e.code];
+    if (!k) return;
+    e.preventDefault();   // a focused layout button must not take the space bar as a click
+    if (has(held, k)) { held = held.filter(function (x) { return x !== k; }); render(); }
+  });
+  window.addEventListener("blur", function () {
+    held = []; probe.interrupt(); renderProbe(); render();
+  });
+
+  show(wanted());
+  if (location.hash === "#us-test") openProbe(true);
+})();
+</script>
+</body>
+</html>

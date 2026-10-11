@@ -1,0 +1,40 @@
+.word-options,.lesson-controls{display:flex;gap:16px;align-items:end;flex-wrap:wrap;margin-bottom:24px}
+.word-options label,.lesson-controls label{display:grid;gap:6px;color:var(--muted);font-size:12px}
+.lesson-picker{flex:1;min-width:180px}.lesson-picker select{width:100%}
+.practice-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:12px 0 24px}
+.practice-metrics span{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
+.practice-metrics strong{font-size:24px;font-variant-numeric:tabular-nums;font-weight:500}
+.practice-metrics>div:first-child strong{color:var(--on-edge)}
+.word-target{position:relative;height:150px;overflow-y:auto;line-height:1.8;margin-bottom:20px;scrollbar-width:thin}
+.word-target .remaining{color:var(--muted)}.word-target .current-word .remaining{color:var(--ink)}
+.word{display:inline-block}.current-word{border-bottom:2px solid var(--on-edge)}
+.mistyped{color:var(--bad-text);text-decoration:underline;text-decoration-style:dotted}
+.practice-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:16px 0 24px}
+kbd{font-family:inherit;font-size:.8em;color:var(--muted);margin-left:4px}
+.lesson-introduction{margin:22px 0}.lesson-introduction p{color:var(--muted);line-height:1.65;margin-top:10px;white-space:pre-line}
+.workspace:has(.lesson-layout){max-width:100%}.lesson-layout{display:grid;gap:24px}.lesson-workspace{min-width:0}
+.course-browser{border:1px solid var(--line);border-radius:var(--radius);padding:16px;align-self:start}
+.course-browser summary{font-size:14px;font-weight:600}.course-browser-body{padding-top:18px}
+.course-browser select,.course-browser input{width:100%;margin:8px 0}.course-browser input{padding:9px 11px;border:1px solid var(--line);border-radius:var(--input-radius);background:var(--surface);color:var(--ink)}
+.course-progress{margin:10px 0 18px}.course-rows{max-height:440px;overflow:auto;scrollbar-width:thin}
+.course-unit{margin-bottom:22px}.course-unit h4{font-size:10px;font-weight:600;text-transform:uppercase;color:var(--muted);margin:0 10px 8px}
+.course-lesson{display:grid;grid-template-columns:22px minmax(0,1fr);gap:12px;align-items:center;width:100%;min-height:60px;padding:10px;text-align:left;border:0;background:transparent;font-size:13px}
+.course-lesson.selected{background:var(--guide)}.course-number{display:flex;align-items:center;justify-content:center;border-radius:50%;height:22px;background:var(--soft);font-size:11px;color:var(--muted)}
+.passage-label{font-size:10px;font-weight:600;color:var(--muted);margin-bottom:12px}
+@media(min-width:980px){.lesson-layout{grid-template-columns:284px minmax(0,1fr);gap:28px}.course-browser summary{display:none}.course-browser-body{padding-top:0}.course-rows{max-height:640px}.lesson-introduction{margin-top:0}}
+.new-combinations{display:flex;flex-wrap:wrap;gap:10px 20px;margin-top:14px;font-size:13px}
+.practiced{font-size:11px;font-weight:400;color:var(--muted);margin-left:12px}
+.speed-chart{display:block;width:100%;max-height:180px;margin-top:18px}.speed-chart text{fill:var(--muted);font-size:12px}
+.custom-layout{display:grid;grid-template-columns:210px minmax(0,1fr);gap:28px}.custom-library input{width:100%;margin-bottom:12px}
+.custom-form{min-width:0}.custom-form textarea{width:100%;resize:vertical}.custom-form .form-row{margin:16px 0}
+.custom-row{display:grid;text-align:left;width:100%;border:0;border-bottom:1px solid var(--line);border-radius:0;gap:5px;padding:12px 8px}
+.custom-row strong{font-size:14px;overflow-wrap:anywhere}.custom-row span{font-size:11px;color:var(--muted)}
+.custom-row.selected{background:var(--guide)}.record-chord{min-height:50px;width:100%;font-size:18px;text-align:left}
+.custom-impact{margin:18px 0;border-top:1px solid var(--line);padding-top:14px}.custom-impact>div{margin-bottom:12px}.custom-impact strong{font-size:12px}
+.custom-impact p{margin-top:5px;white-space:pre-wrap;overflow-wrap:anywhere}.custom-form .error{margin-bottom:12px}
+#custom-test{margin-top:22px;border-top:1px solid var(--line);padding-top:18px}
+.labels-printed .keyboard-key .meaning{display:none}
+.labels-meaning .keyboard-key .printed{display:none}
+.labels-meaning .keyboard-key .meaning{font-size:14px;opacity:1}
+@media(max-width:620px){.custom-layout{grid-template-columns:1fr;gap:24px}.custom-library{max-height:220px;overflow:auto}.word-options{gap:12px}.word-options label:first-child{flex:1}.word-options select{max-width:100%}.word-target{height:170px}.practice-metrics strong{font-size:22px}.primary-navigation{gap:4px!important}}
+@media(max-width:520px){.keyboard{min-width:0}.keyboard-key{padding:0;border-radius:3px}.keyboard-key .printed,.keyboard-inert{font-size:9px}.keyboard-key .meaning{font-size:8px}}

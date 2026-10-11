@@ -1,0 +1,612 @@
+{
+ "schema": 1,
+ "layout": "iso",
+ "device": {
+  "model": "MacBookPro18,1",
+  "name": "MacBook Pro (16-inch, 2021), Apple M1 Pro",
+  "keyboard": "built-in, ISO (Canadian French legends; key positions are those of every Apple ISO layout)",
+  "macos": "26.6.2",
+  "measured": "2026-09"
+ },
+ "rule": "Every key closes one row wire and one column wire. Three keys held in an L (two share a row, and one of those shares a column with the third) make the keyboard also see the fourth corner of that rectangle closed. If a key sits at the fourth corner, the keyboard cannot tell whether it is pressed, so it drops the combination. If the fourth corner is an empty spot, all three register. Up to 6 keys register together when no three of them are dropped; the keyboard never registers more than 6 keys at once (6-key rollover).",
+ "rollover": 6,
+ "columns": [
+  {
+   "id": "1",
+   "description": "column of the 1 key"
+  },
+  {
+   "id": "2",
+   "description": "column of the 2 key"
+  },
+  {
+   "id": "3",
+   "description": "column of the 3 key"
+  },
+  {
+   "id": "4",
+   "description": "column of the 4 key"
+  },
+  {
+   "id": "5",
+   "description": "column of the 5 key"
+  },
+  {
+   "id": "6",
+   "description": "column of the 6 key"
+  },
+  {
+   "id": "7",
+   "description": "column of the 7 key"
+  },
+  {
+   "id": "8",
+   "description": "column of the 8 key"
+  },
+  {
+   "id": "9",
+   "description": "column of the 9 key"
+  },
+  {
+   "id": "0",
+   "description": "column of the 0 key"
+  },
+  {
+   "id": "=",
+   "description": "column of the = key"
+  }
+ ],
+ "rows": [
+  {
+   "id": "number",
+   "description": "the number row 1–0 and ="
+  },
+  {
+   "id": "top",
+   "description": "top letter row, except W E R"
+  },
+  {
+   "id": "home",
+   "description": "home row, except S D G"
+  },
+  {
+   "id": "bottom",
+   "description": "bottom row, except V B"
+  },
+  {
+   "id": "space",
+   "description": "Space, the ISO ` key and '; the unidentified keys here are probably modifiers"
+  },
+  {
+   "id": "bracket",
+   "description": "[ ] and the ISO \\ key"
+  },
+  {
+   "id": "minus",
+   "description": "the - key"
+  },
+  {
+   "id": "wr",
+   "description": "W and R only"
+  },
+  {
+   "id": "sg",
+   "description": "S and G only"
+  },
+  {
+   "id": "dvb",
+   "description": "D, V and B only"
+  },
+  {
+   "id": "e",
+   "description": "E only"
+  }
+ ],
+ "keys": [
+  {
+   "id": "1",
+   "label": "1",
+   "keycode": 18,
+   "kvk": "kVK_ANSI_1",
+   "web_code": "Digit1",
+   "row": "number",
+   "column": "1"
+  },
+  {
+   "id": "2",
+   "label": "2",
+   "keycode": 19,
+   "kvk": "kVK_ANSI_2",
+   "web_code": "Digit2",
+   "row": "number",
+   "column": "2"
+  },
+  {
+   "id": "3",
+   "label": "3",
+   "keycode": 20,
+   "kvk": "kVK_ANSI_3",
+   "web_code": "Digit3",
+   "row": "number",
+   "column": "3"
+  },
+  {
+   "id": "4",
+   "label": "4",
+   "keycode": 21,
+   "kvk": "kVK_ANSI_4",
+   "web_code": "Digit4",
+   "row": "number",
+   "column": "4"
+  },
+  {
+   "id": "5",
+   "label": "5",
+   "keycode": 23,
+   "kvk": "kVK_ANSI_5",
+   "web_code": "Digit5",
+   "row": "number",
+   "column": "5"
+  },
+  {
+   "id": "6",
+   "label": "6",
+   "keycode": 22,
+   "kvk": "kVK_ANSI_6",
+   "web_code": "Digit6",
+   "row": "number",
+   "column": "6"
+  },
+  {
+   "id": "7",
+   "label": "7",
+   "keycode": 26,
+   "kvk": "kVK_ANSI_7",
+   "web_code": "Digit7",
+   "row": "number",
+   "column": "7"
+  },
+  {
+   "id": "8",
+   "label": "8",
+   "keycode": 28,
+   "kvk": "kVK_ANSI_8",
+   "web_code": "Digit8",
+   "row": "number",
+   "column": "8"
+  },
+  {
+   "id": "9",
+   "label": "9",
+   "keycode": 25,
+   "kvk": "kVK_ANSI_9",
+   "web_code": "Digit9",
+   "row": "number",
+   "column": "9"
+  },
+  {
+   "id": "0",
+   "label": "0",
+   "keycode": 29,
+   "kvk": "kVK_ANSI_0",
+   "web_code": "Digit0",
+   "row": "number",
+   "column": "0"
+  },
+  {
+   "id": "Equal",
+   "label": "=",
+   "keycode": 24,
+   "kvk": "kVK_ANSI_Equal",
+   "web_code": "Equal",
+   "row": "number",
+   "column": "="
+  },
+  {
+   "id": "Q",
+   "label": "Q",
+   "keycode": 12,
+   "kvk": "kVK_ANSI_Q",
+   "web_code": "KeyQ",
+   "row": "top",
+   "column": "1"
+  },
+  {
+   "id": "T",
+   "label": "T",
+   "keycode": 17,
+   "kvk": "kVK_ANSI_T",
+   "web_code": "KeyT",
+   "row": "top",
+   "column": "5"
+  },
+  {
+   "id": "Y",
+   "label": "Y",
+   "keycode": 16,
+   "kvk": "kVK_ANSI_Y",
+   "web_code": "KeyY",
+   "row": "top",
+   "column": "6"
+  },
+  {
+   "id": "U",
+   "label": "U",
+   "keycode": 32,
+   "kvk": "kVK_ANSI_U",
+   "web_code": "KeyU",
+   "row": "top",
+   "column": "7"
+  },
+  {
+   "id": "I",
+   "label": "I",
+   "keycode": 34,
+   "kvk": "kVK_ANSI_I",
+   "web_code": "KeyI",
+   "row": "top",
+   "column": "8"
+  },
+  {
+   "id": "O",
+   "label": "O",
+   "keycode": 31,
+   "kvk": "kVK_ANSI_O",
+   "web_code": "KeyO",
+   "row": "top",
+   "column": "9"
+  },
+  {
+   "id": "P",
+   "label": "P",
+   "keycode": 35,
+   "kvk": "kVK_ANSI_P",
+   "web_code": "KeyP",
+   "row": "top",
+   "column": "0"
+  },
+  {
+   "id": "A",
+   "label": "A",
+   "keycode": 0,
+   "kvk": "kVK_ANSI_A",
+   "web_code": "KeyA",
+   "row": "home",
+   "column": "1"
+  },
+  {
+   "id": "F",
+   "label": "F",
+   "keycode": 3,
+   "kvk": "kVK_ANSI_F",
+   "web_code": "KeyF",
+   "row": "home",
+   "column": "4"
+  },
+  {
+   "id": "H",
+   "label": "H",
+   "keycode": 4,
+   "kvk": "kVK_ANSI_H",
+   "web_code": "KeyH",
+   "row": "home",
+   "column": "6"
+  },
+  {
+   "id": "J",
+   "label": "J",
+   "keycode": 38,
+   "kvk": "kVK_ANSI_J",
+   "web_code": "KeyJ",
+   "row": "home",
+   "column": "7"
+  },
+  {
+   "id": "K",
+   "label": "K",
+   "keycode": 40,
+   "kvk": "kVK_ANSI_K",
+   "web_code": "KeyK",
+   "row": "home",
+   "column": "8"
+  },
+  {
+   "id": "L",
+   "label": "L",
+   "keycode": 37,
+   "kvk": "kVK_ANSI_L",
+   "web_code": "KeyL",
+   "row": "home",
+   "column": "9"
+  },
+  {
+   "id": "Semicolon",
+   "label": ";",
+   "keycode": 41,
+   "kvk": "kVK_ANSI_Semicolon",
+   "web_code": "Semicolon",
+   "row": "home",
+   "column": "0"
+  },
+  {
+   "id": "Z",
+   "label": "Z",
+   "keycode": 6,
+   "kvk": "kVK_ANSI_Z",
+   "web_code": "KeyZ",
+   "row": "bottom",
+   "column": "1"
+  },
+  {
+   "id": "X",
+   "label": "X",
+   "keycode": 7,
+   "kvk": "kVK_ANSI_X",
+   "web_code": "KeyX",
+   "row": "bottom",
+   "column": "2"
+  },
+  {
+   "id": "C",
+   "label": "C",
+   "keycode": 8,
+   "kvk": "kVK_ANSI_C",
+   "web_code": "KeyC",
+   "row": "bottom",
+   "column": "3"
+  },
+  {
+   "id": "N",
+   "label": "N",
+   "keycode": 45,
+   "kvk": "kVK_ANSI_N",
+   "web_code": "KeyN",
+   "row": "bottom",
+   "column": "6"
+  },
+  {
+   "id": "M",
+   "label": "M",
+   "keycode": 46,
+   "kvk": "kVK_ANSI_M",
+   "web_code": "KeyM",
+   "row": "bottom",
+   "column": "7"
+  },
+  {
+   "id": "Comma",
+   "label": ",",
+   "keycode": 43,
+   "kvk": "kVK_ANSI_Comma",
+   "web_code": "Comma",
+   "row": "bottom",
+   "column": "8"
+  },
+  {
+   "id": "Period",
+   "label": ".",
+   "keycode": 47,
+   "kvk": "kVK_ANSI_Period",
+   "web_code": "Period",
+   "row": "bottom",
+   "column": "9"
+  },
+  {
+   "id": "Slash",
+   "label": "/",
+   "keycode": 44,
+   "kvk": "kVK_ANSI_Slash",
+   "web_code": "Slash",
+   "row": "bottom",
+   "column": "0"
+  },
+  {
+   "id": "Grave",
+   "label": "`",
+   "keycode": 50,
+   "kvk": "kVK_ANSI_Grave",
+   "web_code": "Backquote",
+   "row": "space",
+   "column": "1",
+   "note": "ISO key between left Shift and Z"
+  },
+  {
+   "id": "Space",
+   "label": "space",
+   "keycode": 49,
+   "kvk": "kVK_Space",
+   "web_code": "Space",
+   "row": "space",
+   "column": "6"
+  },
+  {
+   "id": "Quote",
+   "label": "'",
+   "keycode": 39,
+   "kvk": "kVK_ANSI_Quote",
+   "web_code": "Quote",
+   "row": "space",
+   "column": "0",
+   "note": "key right of ;"
+  },
+  {
+   "id": "Backslash",
+   "label": "\\",
+   "keycode": 42,
+   "kvk": "kVK_ANSI_Backslash",
+   "web_code": "Backslash",
+   "row": "bracket",
+   "column": "5",
+   "note": "ISO key between ' and Return, on the home row"
+  },
+  {
+   "id": "RBracket",
+   "label": "]",
+   "keycode": 30,
+   "kvk": "kVK_ANSI_RightBracket",
+   "web_code": "BracketRight",
+   "row": "bracket",
+   "column": "6"
+  },
+  {
+   "id": "LBracket",
+   "label": "[",
+   "keycode": 33,
+   "kvk": "kVK_ANSI_LeftBracket",
+   "web_code": "BracketLeft",
+   "row": "bracket",
+   "column": "8"
+  },
+  {
+   "id": "Minus",
+   "label": "-",
+   "keycode": 27,
+   "kvk": "kVK_ANSI_Minus",
+   "web_code": "Minus",
+   "row": "minus",
+   "column": "9"
+  },
+  {
+   "id": "W",
+   "label": "W",
+   "keycode": 13,
+   "kvk": "kVK_ANSI_W",
+   "web_code": "KeyW",
+   "row": "wr",
+   "column": "2"
+  },
+  {
+   "id": "R",
+   "label": "R",
+   "keycode": 15,
+   "kvk": "kVK_ANSI_R",
+   "web_code": "KeyR",
+   "row": "wr",
+   "column": "4"
+  },
+  {
+   "id": "S",
+   "label": "S",
+   "keycode": 1,
+   "kvk": "kVK_ANSI_S",
+   "web_code": "KeyS",
+   "row": "sg",
+   "column": "2"
+  },
+  {
+   "id": "G",
+   "label": "G",
+   "keycode": 5,
+   "kvk": "kVK_ANSI_G",
+   "web_code": "KeyG",
+   "row": "sg",
+   "column": "5"
+  },
+  {
+   "id": "D",
+   "label": "D",
+   "keycode": 2,
+   "kvk": "kVK_ANSI_D",
+   "web_code": "KeyD",
+   "row": "dvb",
+   "column": "3"
+  },
+  {
+   "id": "V",
+   "label": "V",
+   "keycode": 9,
+   "kvk": "kVK_ANSI_V",
+   "web_code": "KeyV",
+   "row": "dvb",
+   "column": "4"
+  },
+  {
+   "id": "B",
+   "label": "B",
+   "keycode": 11,
+   "kvk": "kVK_ANSI_B",
+   "web_code": "KeyB",
+   "row": "dvb",
+   "column": "5"
+  },
+  {
+   "id": "E",
+   "label": "E",
+   "keycode": 14,
+   "kvk": "kVK_ANSI_E",
+   "web_code": "KeyE",
+   "row": "e",
+   "column": "3"
+  }
+ ],
+ "unidentified": [
+  {
+   "row": "space",
+   "column": "2"
+  },
+  {
+   "row": "space",
+   "column": "3"
+  },
+  {
+   "row": "space",
+   "column": "5"
+  },
+  {
+   "row": "space",
+   "column": "7"
+  },
+  {
+   "row": "space",
+   "column": "8"
+  },
+  {
+   "row": "bracket",
+   "column": "3"
+  },
+  {
+   "row": "bracket",
+   "column": "4"
+  },
+  {
+   "row": "bracket",
+   "column": "7"
+  },
+  {
+   "row": "bracket",
+   "column": "9"
+  },
+  {
+   "row": "bracket",
+   "column": "0"
+  },
+  {
+   "row": "minus",
+   "column": "1"
+  },
+  {
+   "row": "minus",
+   "column": "2"
+  },
+  {
+   "row": "minus",
+   "column": "3"
+  },
+  {
+   "row": "minus",
+   "column": "7"
+  },
+  {
+   "row": "minus",
+   "column": "8"
+  },
+  {
+   "row": "minus",
+   "column": "0"
+  },
+  {
+   "row": "minus",
+   "column": "="
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+# Wiring Check 1: 3-key combinations the Matrix Scan left open (the eight keys W E R S D G V B against each
+# other, spots used as fourth corners but never observed, and the ` key). Nothing here repeats the scan.
+version 1
+hardware MacBookPro18,1 Apple M1 Pro, ISO keyboard
+keys Grave 1 2 3 4 5 6 7 8 9 0 Minus Equal Q W E R T Y U I O P LBracket RBracket Backslash A S D F G H J K L Semicolon Quote Z X C V B N M Comma Period Slash Space
+sweep W+E blocked - tapped Grave 1 2 3 4 5 Minus Equal R O LBracket Backslash L
+sweep W+R blocked 2 4 tapped Grave 1 2 4 5 Minus Equal O Backslash S
+sweep S+W blocked - tapped Grave 1 2 3 4 5 Minus Equal Q E RBracket Backslash K
+sweep D+W blocked - tapped Grave 1 2 3 4 5 Minus Equal E O LBracket Backslash L
+sweep G+W blocked - tapped Grave 1 2 3 4 5 Minus Equal E O RBracket Backslash L
+sweep V+W blocked - tapped Grave 1 2 3 4 5 Minus Equal E O LBracket Backslash K
+sweep B+W blocked - tapped 1 2 3 4 5 7 Minus Equal E Y LBracket Backslash L Semicolon
+sweep E+R blocked - tapped 1 2 3 4 5 Minus Equal I LBracket Backslash S Semicolon
+sweep S+E blocked - tapped Grave 1 2 3 4 5 Minus Equal I LBracket Backslash D G L
+sweep D+E blocked - tapped Grave 1 2 3 4 5 Minus Equal R O LBracket Backslash G J L
+sweep G+E blocked - tapped Grave 1 2 3 4 5 Minus Equal R I LBracket Backslash K L V
+sweep V+E blocked - tapped Grave 1 2 3 4 5 Minus Equal R Y Backslash S J
+sweep B+E blocked - tapped Grave 1 2 3 4 5 7 9 0 Minus Equal R I RBracket S L
+sweep S+R blocked - tapped Grave 1 2 3 4 5 Minus Equal P RBracket Backslash D G
+sweep D+R blocked - tapped Grave 1 2 3 4 5 Minus Equal W U Backslash G L Semicolon V Period
+sweep G+R blocked - tapped Grave 1 2 3 4 5 Minus Equal W O LBracket Backslash L V B
+sweep V+R blocked - tapped Grave 1 2 4 5 Minus Equal W Backslash S L B
+sweep B+R blocked - tapped 1 2 4 5 Equal W O LBracket Backslash S D K
+sweep S+D blocked - tapped Grave 1 2 3 4 5 Minus Equal W U LBracket Backslash G L
+sweep S+G blocked 2 5 tapped Grave 1 2 3 4 5 Minus Equal W U RBracket Backslash L V B
+sweep S+V blocked - tapped 1 2 3 4 5 Minus Equal W I LBracket Backslash D K B
+sweep S+B blocked - tapped Grave 1 2 3 4 5 Minus Equal W U RBracket Backslash D L
+sweep D+G blocked - tapped Grave 1 2 3 4 5 Minus Equal W Backslash K V B
+sweep D+V blocked 3 4 tapped Grave 1 2 3 4 5 7 Minus Equal W E I Backslash B
+sweep D+B blocked 3 5 Backslash tapped Grave 1 2 3 4 5 0 Minus Equal W E U RBracket Backslash L
+sweep G+V blocked - tapped 1 2 3 4 5 Minus Equal W LBracket Backslash Semicolon B
+sweep G+B blocked - tapped 1 2 3 4 5 Minus Equal W E U RBracket Backslash L Semicolon
+sweep V+B blocked 4 5 Backslash tapped Grave 1 2 4 5 7 Minus Equal W E Backslash K
+sweep 6+Space blocked 1 2 3 5 tapped 1 2 3 4 5 9 Equal L
+sweep Minus+O blocked Q U P tapped Q T Y U P L
+sweep RBracket+Backslash blocked Y Space tapped Y H L N Space
+sweep 9+O blocked - tapped 2 3 4 Equal L
+sweep 9+L blocked - tapped 2 3 5 Equal I
+sweep Y+T blocked RBracket tapped RBracket L N
+sweep LBracket+K blocked F tapped O A F
+sweep Semicolon+Slash blocked - tapped O F
+sweep Minus+L blocked - tapped I F
+sweep Equal+Slash blocked - tapped 0 L
+sweep Equal+RBracket blocked - tapped 6 L
+sweep LBracket+Comma blocked - tapped L X
+sweep Space+Grave blocked 6 Y H N tapped 6 7 Y U P H J N M

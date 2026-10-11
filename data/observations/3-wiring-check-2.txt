@@ -1,0 +1,9 @@
+# Wiring Check 2: the 19 spots on the W R, S G, D V B and E rows the corrected wiring still relied on.
+# Planned and predicted before it was run (the wiring predicted all 23 taps correctly).
+version 1
+hardware MacBookPro18,1 Apple M1 Pro, ISO keyboard
+keys Grave 1 2 3 4 5 6 7 8 9 0 Minus Equal Q W E R T Y U I O P LBracket RBracket Backslash A S D F G H J K L Semicolon Quote Z X C V B N M Comma Period Slash Space
+sweep E+3 blocked - tapped 1 6 7 8 9 0 Equal L
+sweep W+2 blocked - tapped 6 7 8 9 0 Equal L
+sweep S+2 blocked - tapped 1 9 Equal L
+sweep D+3 blocked - tapped 7 9 Equal L

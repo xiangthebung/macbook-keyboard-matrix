@@ -1,0 +1,74 @@
+# Matrix Scan, MacBookPro18,1 (M1 Pro, ISO keyboard), macOS 26.
+# sweep A+B blocked <keys> [untested <keys> | tapped <keys>]: A and B held, then every other key tapped once
+#   (except the untested ones, or only the tapped ones). Blocked keys never registered.
+# combo <keys> pass|fail [missing <keys>]: the keys pressed together; missing ones did not register.
+version 1
+hardware MacBookPro18,1 Apple M1 Pro, ISO keyboard
+keys Grave 1 2 3 4 5 6 7 8 9 0 Minus Equal Q W E R T Y U I O P LBracket RBracket Backslash A S D F G H J K L Semicolon Quote Z X C V B N M Comma Period Slash Space
+sweep J+M blocked A H K L Semicolon Z N Comma Period Slash
+sweep H+J blocked Grave 6 7 Y U RBracket N M Space
+sweep H+N blocked A K L Semicolon Z Comma Period Slash tapped Grave 6 7 Y U RBracket A K L Semicolon Z B Comma Period Slash Space
+sweep N+M blocked 6 7 Y U RBracket Space tapped Grave 6 7 Y U RBracket A K L Semicolon Z B Comma Period Slash Space
+sweep H+6 blocked 1 4 7 8 9 0 A F J K L Semicolon
+sweep L+K blocked 8 9 Minus I O LBracket Comma Period untested Grave 6 7 Y U RBracket A H J Semicolon N M
+sweep K+Semicolon blocked 8 0 I P LBracket Quote Comma Slash untested Grave 6 7 Y U RBracket A H J L N M
+sweep 8+I blocked 5 Q T Y U O P untested 1 4 6 7 9 0 LBracket A F H J K L Semicolon Z N M Comma Period
+sweep 5+I blocked - untested 6 7 8 9 0 Minus Q T Y U O P LBracket H J K L Semicolon Quote N M Comma Period
+sweep Q+5 blocked 1 untested 6 7 8 9 0 Minus T Y U I O P LBracket H J K L Semicolon Quote N M Comma Period
+sweep T+5 blocked - tapped Grave 2 3 4 Equal W E R RBracket Backslash A S D F G Z X C V B Slash Space
+sweep 8+LBracket blocked 3 RBracket Backslash tapped Grave 2 3 Minus Equal W E R RBracket Backslash S D G Quote X C V B Slash Space
+sweep LBracket+Backslash blocked - tapped Grave 2 4 Minus Equal W E R A S D F G Quote Z X C V B Slash Space
+sweep 9+Minus blocked 2 3 Equal tapped Grave 2 3 Equal W E R S D G Quote X C V B Slash Space
+sweep 2+3 blocked X C tapped Grave 4 W E R A S D F G Quote Z X C V B Slash Space
+sweep X+2 blocked Z Slash tapped Grave 4 W E R A S D F G Quote Z V B Slash Space
+sweep C+2 blocked - tapped Grave 4 W E R A S D F G Quote Z V B Slash Space
+sweep Equal+Minus blocked - tapped Grave 4 W E R A S D F G Quote Z V B Slash Space
+sweep X+C blocked - tapped Grave 4 W E R A S D F G Quote Z V B Slash Space
+sweep 1+4 blocked A tapped W E R A S D G Z V B Space
+sweep 0+Quote blocked Grave Space tapped Grave W E R S D G V B Slash Space
+sweep RBracket+LBracket blocked 6 Y H N Space tapped Grave 6 7 Y U H J N M Slash Space
+sweep F+1 blocked - tapped W E R S D G Z V B Space
+sweep E+N blocked - tapped Z Space
+sweep R+N blocked - tapped Z Space
+sweep D+N blocked - tapped Z Space
+sweep G+N blocked - tapped Z Space
+sweep V+N blocked - tapped Z Space
+sweep B+N blocked - tapped Z Space
+combo Q+W+Y+U pass
+combo E+R+Y+I pass
+combo E+T+U+O pass
+combo W+T+I+P pass
+combo T+I+P pass
+combo W+I+P pass
+combo W+T+P pass
+combo W+T+I pass
+combo Q+I+O+A fail missing Q I A
+combo Q+I+O pass
+combo I+O+A pass
+combo Q+I+A fail missing Q I
+combo Q+O+A fail missing Q A
+combo R+U+P+S pass
+combo Y+P+A+D pass
+combo Y+O+S+F pass
+combo U+I+D+F+C pass
+combo W+R+O+H+C pass
+combo T+Y+G+J+C pass
+combo Q+E+P+K+C pass
+combo A+S+L+Semicolon+C pass
+combo U+A+G+H+V pass
+combo W+S+J+K+V pass
+combo O+P+Z+X+V pass
+combo O+D+G+K+N+M pass
+combo R+T+L+V+N+Slash pass
+combo R+T+L+N+Slash pass
+combo T+L+V+N+Slash pass
+combo R+L+V+N+Slash pass
+combo R+T+V+N+Slash pass
+combo R+T+L+V+N pass
+combo R+T+L+V+Slash pass
+combo E+F+H+Semicolon+V+M pass
+combo I+S+X+C+M+Slash pass
+combo U+J+Z+X+C+N pass
+combo P+A+L+B+N+M pass
+combo Q+I+D+H+V+N pass
+combo R+Y+K+C+V+B pass

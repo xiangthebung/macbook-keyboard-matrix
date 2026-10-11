@@ -1,0 +1,114 @@
+{
+  "labels": {
+    "sections": {
+      "editor": "Editor",
+      "hardware": "Keyboard tools",
+      "learn": "Lessons",
+      "listen": "Listen",
+      "practice": "Practice",
+      "reference": "Reference",
+      "settings": "Settings"
+    },
+    "stages": {
+      "recall": "Recall",
+      "see": "See",
+      "try": "Try",
+      "use": "Use"
+    }
+  },
+  "metrics": {
+    "actionHeight": 34,
+    "cardGap": 10,
+    "cardPadding": 16,
+    "columnGap": 12,
+    "contentWidth": 720,
+    "exerciseWidth": 720,
+    "iconSize": 30,
+    "inputRadius": 6,
+    "keyboardGap": 4,
+    "keyboardHeight": 48,
+    "keyboardRadius": 5,
+    "keyboardWidth": 680,
+    "pagePadding": 24,
+    "radius": 6,
+    "rowGap": 10,
+    "sidebarWidth": 220,
+    "siteWidth": 1560,
+    "topicBreakpoint": 650,
+    "topicHeight": 76
+  },
+  "palette": {
+    "dark": {
+      "bad": "#f85149",
+      "bad-edge": "#ffa198",
+      "bad-fill": "#da3633",
+      "bad-soft": "#3d1a1d",
+      "bad-text": "#ff7b72",
+      "bg": "#0d1117",
+      "fg": "#e6edf3",
+      "guide": "#243249",
+      "key": "#161b22",
+      "line": "#3d444d",
+      "muted": "#9da7b3",
+      "on": "#2f6fdd",
+      "on-edge": "#9cc1ff",
+      "on-hover": "#245bb8",
+      "unmapped": "#21262d",
+      "unmapped-text": "#6e7681",
+      "warm": "#d29922",
+      "warm-soft": "#332c12",
+      "wire": "#3d444d"
+    },
+    "light": {
+      "bad": "#cf222e",
+      "bad-edge": "#82071e",
+      "bad-fill": "#cf222e",
+      "bad-soft": "#ffebe9",
+      "bad-text": "#a40e26",
+      "bg": "#fff",
+      "fg": "#1f2328",
+      "guide": "#eef3fb",
+      "key": "#f6f8fa",
+      "line": "#d0d7de",
+      "muted": "#59636e",
+      "on": "#2f6fdd",
+      "on-edge": "#1d4e9e",
+      "on-hover": "#245bb8",
+      "unmapped": "#f2f3f5",
+      "unmapped-text": "#8c959f",
+      "warm": "#9a6700",
+      "warm-soft": "#fff8c5",
+      "wire": "#d0d7de"
+    }
+  },
+  "rolePalette": {
+    "dark": {
+      "coda": "#40c8e0",
+      "number": "#8e8e93",
+      "onset": "#0a84ff",
+      "space": "#8e8e93",
+      "special": "#ac8e68",
+      "spell": "#ff375f",
+      "vowel": "#bf5af2"
+    },
+    "light": {
+      "coda": "#30b0c7",
+      "number": "#8e8e93",
+      "onset": "#007aff",
+      "space": "#8e8e93",
+      "special": "#a2845e",
+      "spell": "#ff2d55",
+      "vowel": "#af52de"
+    }
+  },
+  "schemaVersion": 1,
+  "typography": {
+    "body": 15,
+    "brand": 20,
+    "caption": 12,
+    "cardTitle": 16,
+    "label": 13,
+    "practice": 22,
+    "title": 22
+  }
+}
