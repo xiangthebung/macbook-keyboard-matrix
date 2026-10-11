@@ -1,4 +1,4 @@
-import {graphemes} from './buffer.js?v=f3ab99c6cf25';
+import {graphemes} from './buffer.js?v=96c282d34c00';
 
 const mask = (1n << 64n) - 1n;
 export class WordPracticeWordStream {

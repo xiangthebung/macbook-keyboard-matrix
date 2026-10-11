@@ -1,7 +1,7 @@
 // Port of TypingPlanner.swift. Every candidate is replayed by ChordEngine before a recipe is retained.
-import {graphemes, graphemeCount, createBuffer, applyActions, commonPrefix} from './buffer.js?v=f3ab99c6cf25';
-import {BANKS, chordID, keyIndices, keyNames, union, subtract, isSubset, compareKeys, effectiveDictionary, getProfile} from './data.js?v=f3ab99c6cf25';
-import {ChordEngine, attachSuffix, initialContext, capitalizeFirst} from './engine.js?v=f3ab99c6cf25';
+import {graphemes, graphemeCount, createBuffer, applyActions, commonPrefix} from './buffer.js?v=96c282d34c00';
+import {BANKS, chordID, keyIndices, keyNames, union, subtract, isSubset, compareKeys, effectiveDictionary, getProfile} from './data.js?v=96c282d34c00';
+import {ChordEngine, attachSuffix, initialContext, capitalizeFirst} from './engine.js?v=96c282d34c00';
 
 const wordChar = char => /^(?:\p{Letter}|\p{Number}|_)/u.test(char);
 const letter = char => /^\p{Letter}/u.test(char);

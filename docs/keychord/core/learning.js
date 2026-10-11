@@ -1,6 +1,6 @@
-import {graphemes,graphemeCount} from './buffer.js?v=f3ab99c6cf25';
-import {BANKS,keyIndices,keyNames,chordID,compareKeys,effectiveEntry,effectiveDictionary,describeCommand,keyMeanings,getProfile} from './data.js?v=f3ab99c6cf25';
-import {TypingPlanner,replayGuide} from './planner.js?v=f3ab99c6cf25';
+import {graphemes,graphemeCount} from './buffer.js?v=96c282d34c00';
+import {BANKS,keyIndices,keyNames,chordID,compareKeys,effectiveEntry,effectiveDictionary,describeCommand,keyMeanings,getProfile} from './data.js?v=96c282d34c00';
+import {TypingPlanner,replayGuide} from './planner.js?v=96c282d34c00';
 
 function spells(text,pieces) {if(!pieces.length)return !text;for(let i=0;i<pieces.length;i++)if(pieces[i]&&text.startsWith(pieces[i])&&spells(text.slice(pieces[i].length),pieces.filter((_,j)=>j!==i)))return true;return false;}
 export function pairClusters(data,bank) {

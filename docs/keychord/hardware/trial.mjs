@@ -1,4 +1,4 @@
-import {ChordObservationSession} from './observations.mjs?v=f3ab99c6cf25';
+import {ChordObservationSession} from './observations.mjs?v=96c282d34c00';
 export const ERGONOMIC_CANDIDATES = Object.freeze([
   {word:'use',keys:['Quote','U','S']}, {word:'you',keys:['Quote','Y','O']}
 ]);

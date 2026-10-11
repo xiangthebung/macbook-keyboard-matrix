@@ -1,6 +1,6 @@
-import {KeyChordApp, ChordField} from './app.js?v=f3ab99c6cf25';
-import * as Core from './core/index.js?v=f3ab99c6cf25';
-import {AttemptEvidence, escapeHTML as h, validPhysicalEvent} from './learning.js?v=f3ab99c6cf25';
+import {KeyChordApp, ChordField} from './app.js?v=96c282d34c00';
+import * as Core from './core/index.js?v=96c282d34c00';
+import {AttemptEvidence, escapeHTML as h, validPhysicalEvent} from './learning.js?v=96c282d34c00';
 
 const sections = [['words', 'Words'], ['learn', 'Lessons'], ['listen', 'Voice Practice']];
 const utilities = [['custom', 'Custom Chords'], ['reference', 'Reference'], ['editor', 'Editor'], ['settings', 'Settings']];

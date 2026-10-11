@@ -1,4 +1,4 @@
-import {MatrixModel, MatrixScanSession, Report, NAME, CODE} from './matrix.mjs?v=f3ab99c6cf25';
+import {MatrixModel, MatrixScanSession, Report, NAME, CODE} from './matrix.mjs?v=96c282d34c00';
 export const PROFILE_STORAGE_KEY = 'keychord-web-hardware-profile-v1';
 export const SCAN_STORAGE_KEY = 'keychord-us-matrix-probe-v1';
 export const DEFAULT_SETTINGS = Object.freeze({modelID:'generic', rolloverLimit:6, keyboard:'', associated:false, localReport:'', wiringText:''});

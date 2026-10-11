@@ -1,4 +1,4 @@
-import {physicalEventDecision} from './observations.mjs?v=f3ab99c6cf25';
+import {physicalEventDecision} from './observations.mjs?v=96c282d34c00';
 
 // No document/window keyboard handler: the dedicated surface owns all captured keys.
 export function attachPhysicalCapture(surface,{getSession,mapEvent,onUpdate=()=>{},onPause=()=>{}}={}) {

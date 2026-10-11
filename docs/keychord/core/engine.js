@@ -1,5 +1,5 @@
-import {graphemes, graphemeCount, commonPrefix} from './buffer.js?v=f3ab99c6cf25';
-import {BANKS, keyIndices, keyNames, chordID, effectiveEntry, subtract, intersection, isSubset, displayEntry, describeCommand} from './data.js?v=f3ab99c6cf25';
+import {graphemes, graphemeCount, commonPrefix} from './buffer.js?v=96c282d34c00';
+import {BANKS, keyIndices, keyNames, chordID, effectiveEntry, subtract, intersection, isSubset, displayEntry, describeCommand} from './data.js?v=96c282d34c00';
 
 const clone = value => structuredClone(value);
 export const initialContext = () => ({atStart: true, last: null, pendingCap: false, doubleQuoteOpen: false, casing: null, snippets: [], afterSnippet: false, prevWord: null});

@@ -1,10 +1,10 @@
-import * as coreAPI from '../core/index.js?v=f3ab99c6cf25';
-import {ChordObservationSession,RawProbeSession,observationReport,rawReport} from './observations.mjs?v=f3ab99c6cf25';
-import {attachPhysicalCapture} from './capture.mjs?v=f3ab99c6cf25';
-import {getHardwareProfile,getHardwareSettings,setHardwareSettings,subscribeHardwareProfile,parseScanReport,parseWiring,serializeWiring,SCAN_STORAGE_KEY} from './profile.mjs?v=f3ab99c6cf25';
-import {ERGONOMIC_CANDIDATES,ErgonomicTrialSession,buildErgonomicTrials,ergonomicReport} from './trial.mjs?v=f3ab99c6cf25';
-import {createTrialAdapter,plannedTargets} from './runtime.mjs?v=f3ab99c6cf25';
-export {getHardwareProfile,getHardwareSettings,setHardwareSettings,subscribeHardwareProfile} from './profile.mjs?v=f3ab99c6cf25';
+import * as coreAPI from '../core/index.js?v=96c282d34c00';
+import {ChordObservationSession,RawProbeSession,observationReport,rawReport} from './observations.mjs?v=96c282d34c00';
+import {attachPhysicalCapture} from './capture.mjs?v=96c282d34c00';
+import {getHardwareProfile,getHardwareSettings,setHardwareSettings,subscribeHardwareProfile,parseScanReport,parseWiring,serializeWiring,SCAN_STORAGE_KEY} from './profile.mjs?v=96c282d34c00';
+import {ERGONOMIC_CANDIDATES,ErgonomicTrialSession,buildErgonomicTrials,ergonomicReport} from './trial.mjs?v=96c282d34c00';
+import {createTrialAdapter,plannedTargets} from './runtime.mjs?v=96c282d34c00';
+export {getHardwareProfile,getHardwareSettings,setHardwareSettings,subscribeHardwareProfile} from './profile.mjs?v=96c282d34c00';
 
 export function mountHardware(container,context={}) {
   const data=context.data; const core=context.engine?.planText?context.engine:coreAPI;

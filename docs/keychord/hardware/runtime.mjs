@@ -1,4 +1,4 @@
-import {candidateCompatibility} from './trial.mjs?v=f3ab99c6cf25';
+import {candidateCompatibility} from './trial.mjs?v=96c282d34c00';
 
 export function plannedTargets(data,core,profile,mode='words') {
   const words=mode==='capitals'?['A','H','J','K']:['sat','hat','tan'];

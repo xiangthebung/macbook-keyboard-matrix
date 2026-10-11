@@ -1,4 +1,4 @@
-import {graphemes} from './buffer.js?v=f3ab99c6cf25';
+import {graphemes} from './buffer.js?v=96c282d34c00';
 
 export const BANKS = ['onset', 'vowel', 'coda'];
 export const chordID = keys => keys.join(',');

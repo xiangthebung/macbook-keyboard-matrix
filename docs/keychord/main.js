@@ -1,8 +1,8 @@
-import {PracticeApp} from './practice-app.js?v=f3ab99c6cf25';
-import {escapeHTML} from './learning.js?v=f3ab99c6cf25';
+import {PracticeApp} from './practice-app.js?v=96c282d34c00';
+import {escapeHTML} from './learning.js?v=96c282d34c00';
 
 try {
-  const response = await fetch(new URL('./data.json?v=f3ab99c6cf25', import.meta.url));
+  const response = await fetch(new URL('./data.json?v=96c282d34c00', import.meta.url));
   if (!response.ok) throw new Error('The practice data could not be loaded.');
   window.keyChordApp = new PracticeApp(await response.json());
 } catch (error) {

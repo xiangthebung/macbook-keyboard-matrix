@@ -1,9 +1,9 @@
-import * as Core from './core/index.js?v=f3ab99c6cf25';
-import {DESIGN} from '../design.js?v=f3ab99c6cf25';
-import {PRESENTATION, firstChordPresentation, nextFirstChordState, demoPresentation as demonstrationPresentation, lessonPresentation} from './presentation.js?v=f3ab99c6cf25';
-import {mountHardware, getHardwareProfile, subscribeHardwareProfile} from './hardware/index.js?v=f3ab99c6cf25';
-import {LearningStore, isDue, isRetained, localDay, dayLabel} from './learning-store.js?v=f3ab99c6cf25';
-import {AttemptEvidence, PracticeProgress, restoreDeclaredMode, capturePlannedTab, draftPracticeWindow, normalizeBrowserText, loadSavedMapping, inferLanguage, escapeHTML as h, validPhysicalEvent} from './learning.js?v=f3ab99c6cf25';
+import * as Core from './core/index.js?v=96c282d34c00';
+import {DESIGN} from '../design.js?v=96c282d34c00';
+import {PRESENTATION, firstChordPresentation, nextFirstChordState, demoPresentation as demonstrationPresentation, lessonPresentation} from './presentation.js?v=96c282d34c00';
+import {mountHardware, getHardwareProfile, subscribeHardwareProfile} from './hardware/index.js?v=96c282d34c00';
+import {LearningStore, isDue, isRetained, localDay, dayLabel} from './learning-store.js?v=96c282d34c00';
+import {AttemptEvidence, PracticeProgress, restoreDeclaredMode, capturePlannedTab, draftPracticeWindow, normalizeBrowserText, loadSavedMapping, inferLanguage, escapeHTML as h, validPhysicalEvent} from './learning.js?v=96c282d34c00';
 
 const TABS = ['learn','practice','listen','editor','reference','hardware','settings'].map(id=>[id,DESIGN.labels.sections[id]]);
 const stages = ['see','try','recall','use'];

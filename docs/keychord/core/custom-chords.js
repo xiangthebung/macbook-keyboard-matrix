@@ -1,5 +1,5 @@
-import {createRuntimeData, chordID, compareBits, effectiveEntry} from './data.js?v=f3ab99c6cf25';
-import {recipeForChord} from './engine.js?v=f3ab99c6cf25';
+import {createRuntimeData, chordID, compareBits, effectiveEntry} from './data.js?v=96c282d34c00';
+import {recipeForChord} from './engine.js?v=96c282d34c00';
 
 export const customModes = scope => scope === 'both' ? ['english', 'cpp'] : [scope];
 export function customKeys(chord, base) {
